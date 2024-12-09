@@ -8,6 +8,7 @@ import {
   Input,
   Stack,
   Separator,
+  Text,
 } from "@chakra-ui/react";
 import {
   NativeSelectField,
@@ -181,49 +182,58 @@ const Reservas = () => {
       </Stack>
 
       <Separator mb={4} borderColor="gray.300" />
-
-      <Table.Root size="sm" interactive>
-        <Table.Header>
-          <Table.Row>
-            <Table.ColumnHeader>Nombre</Table.ColumnHeader>
-            <Table.ColumnHeader>Fecha</Table.ColumnHeader>
-            <Table.ColumnHeader>Hora</Table.ColumnHeader>
-            <Table.ColumnHeader>Duración</Table.ColumnHeader>
-            <Table.ColumnHeader>Teléfono</Table.ColumnHeader>
-            <Table.ColumnHeader>Cancha</Table.ColumnHeader>
-            <Table.ColumnHeader textAlign="center">Acciones</Table.ColumnHeader>
-          </Table.Row>
-        </Table.Header>
-        <Table.Body>
-          {reservas.map((reserva) => (
-            <Table.Row key={reserva.id}>
-              <Table.Cell>{reserva.nombre_contacto}</Table.Cell>
-              <Table.Cell>{reserva.dia}</Table.Cell>
-              <Table.Cell>{reserva.hora.slice(0, 5)}</Table.Cell>
-              <Table.Cell>{reserva.duracion} mins </Table.Cell>
-              <Table.Cell>{reserva.telefono}</Table.Cell>
-              <Table.Cell>{getCanchaNombre(reserva.cancha_id)}</Table.Cell>
-              <Table.Cell textAlign="center">
-                <Button
-                  colorScheme="blue"
-                  size="sm"
-                  onClick={() => handleEditOpen(reserva)}
-                >
-                  Editar
-                </Button>
-                <Button
-                  colorScheme="red"
-                  size="sm"
-                  onClick={() => handleDelete(reserva.id)}
-                  ml={2}
-                >
-                  Eliminar
-                </Button>
-              </Table.Cell>
+      {reservas.length > 0 ? (
+        <Table.Root size="sm" interactive>
+          <Table.Header>
+            <Table.Row>
+              <Table.ColumnHeader>Nombre</Table.ColumnHeader>
+              <Table.ColumnHeader>Fecha</Table.ColumnHeader>
+              <Table.ColumnHeader>Hora</Table.ColumnHeader>
+              <Table.ColumnHeader>Duración</Table.ColumnHeader>
+              <Table.ColumnHeader>Teléfono</Table.ColumnHeader>
+              <Table.ColumnHeader>Cancha</Table.ColumnHeader>
+              <Table.ColumnHeader textAlign="center">
+                Acciones
+              </Table.ColumnHeader>
             </Table.Row>
-          ))}
-        </Table.Body>
-      </Table.Root>
+          </Table.Header>
+          <Table.Body>
+            {reservas.map((reserva) => (
+              <Table.Row key={reserva.id}>
+                <Table.Cell>{reserva.nombre_contacto}</Table.Cell>
+                <Table.Cell>{reserva.dia}</Table.Cell>
+                <Table.Cell>{reserva.hora.slice(0, 5)}</Table.Cell>
+                <Table.Cell>{reserva.duracion} mins </Table.Cell>
+                <Table.Cell>{reserva.telefono}</Table.Cell>
+                <Table.Cell>{getCanchaNombre(reserva.cancha_id)}</Table.Cell>
+                <Table.Cell textAlign="center">
+                  <Button
+                    colorScheme="blue"
+                    size="sm"
+                    onClick={() => handleEditOpen(reserva)}
+                  >
+                    Editar
+                  </Button>
+                  <Button
+                    colorScheme="red"
+                    size="sm"
+                    onClick={() => handleDelete(reserva.id)}
+                    ml={2}
+                  >
+                    Eliminar
+                  </Button>
+                </Table.Cell>
+              </Table.Row>
+            ))}
+          </Table.Body>
+        </Table.Root>
+      ) : (
+        <Box textAlign="center" mt={4}>
+          <Text color="gray.500">
+            Aún no hay reservas para la cancha en esta fecha.
+          </Text>
+        </Box>
+      )}
 
       {isOpen && (
         <DialogRoot
