@@ -200,7 +200,7 @@ const Reservas = () => {
               <Table.Cell>{reserva.nombre_contacto}</Table.Cell>
               <Table.Cell>{reserva.dia}</Table.Cell>
               <Table.Cell>{reserva.hora.slice(0, 5)}</Table.Cell>
-              <Table.Cell>{reserva.duracion}</Table.Cell>
+              <Table.Cell>{reserva.duracion} mins </Table.Cell>
               <Table.Cell>{reserva.telefono}</Table.Cell>
               <Table.Cell>{getCanchaNombre(reserva.cancha_id)}</Table.Cell>
               <Table.Cell textAlign="center">
