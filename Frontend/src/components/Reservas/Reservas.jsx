@@ -48,6 +48,30 @@ const Reservas = () => {
     fetchData();
   }, []);
 
+  const handleClickOutside = (event) => {
+    if (
+      isOpen &&
+      createDialogRef.current &&
+      !createDialogRef.current.contains(event.target)
+    ) {
+      setIsOpen(false);
+    }
+    if (
+      isEditOpen &&
+      editDialogRef.current &&
+      !editDialogRef.current.contains(event.target)
+    ) {
+      setIsEditOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen, isEditOpen]);
+
   const getCanchaNombre = (idCancha) => {
     const cancha = canchas.find((cancha) => cancha.id === idCancha);
     return cancha ? cancha.nombre : "Desconocida";
@@ -247,7 +271,17 @@ const Reservas = () => {
           placement="center"
           motionPreset="slide-in-bottom"
         >
-          <DialogContent ref={editDialogRef}>
+          <DialogContent
+            ref={editDialogRef}
+            position="fixed"
+            top="50%"
+            left="50%"
+            transform="translate(-50%, -50%)"
+            maxWidth="400px"
+            zIndex="1000"
+            bg="white"
+            boxShadow="lg"
+          >
             <DialogHeader>
               Editar Reserva
               <Button

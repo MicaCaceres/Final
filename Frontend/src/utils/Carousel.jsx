@@ -13,7 +13,13 @@ const Carousel = () => {
     autoplaySpeed: 2000,
   };
   return (
-    <Box maxW="90%" mx="auto" mt={5}>
+    <Box
+      maxW="90%"
+      mx="auto"
+      mt={5}
+      height={300}
+      justifyContent="space-between"
+    >
       <Slider {...settings}>
         <Box p={2}>
           <Image

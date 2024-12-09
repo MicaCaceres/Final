@@ -8,25 +8,25 @@ function NavBar() {
           Canchas Paddle: Final
         </Text>
 
-        <HStack as="nav" gap={8}>
+        <HStack as="nav" gap={8} fontSize={20}>
           <Link
             href="/Inicio"
             color="white"
-            _hover={{ textDecoration: "underline", color: "teal.200" }}
+            _hover={{ textDecoration: "ActiveCaption", color: "teal.200" }}
           >
             Inicio
           </Link>
           <Link
             href="/Canchas"
             color="white"
-            _hover={{ textDecoration: "underline", color: "teal.200" }}
+            _hover={{ textDecoration: "ActiveCaption", color: "teal.200" }}
           >
             Canchas
           </Link>
           <Link
             href="/Reservas"
             color="white"
-            _hover={{ textDecoration: "underline", color: "teal.200" }}
+            _hover={{ textDecoration: "ActiveCaption", color: "teal.200" }}
           >
             Reservas
           </Link>
